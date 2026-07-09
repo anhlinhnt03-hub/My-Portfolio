@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Thị Ánh Linh — Data & Market Research Enthusiast</title>
+<meta name="description" content="Portfolio của Nguyễn Thị Ánh Linh — Data & Market Research Enthusiast, chuyển hướng từ Kiểm soát Chất lượng sang Phân tích dữ liệu & nghiên cứu thị trường.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B2117;
+    --surface:#123324;
+    --ink:#F4F7F3;
+    --ink-soft:#C3D2C7;
+    --ink-faint:#87A092;
+    --teal:#35C287;
+    --teal-deep:#1F8F62;
+    --coral:#F0B94A;
+    --navy:#081810;
+    --line:rgba(255,255,255,0.12);
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  section{padding:96px 24px;}
+  section#skills{
+    background:linear-gradient(180deg,rgba(53,194,135,0.05),rgba(240,185,74,0.04));
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,33,23,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .nav-logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:17px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-size:14px; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--teal);}
+  @media (max-width:640px){ .nav-links{gap:16px;} .nav-links a{font-size:12.5px;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 24px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; top:-120px; right:-100px; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle,rgba(53,194,135,0.16),rgba(240,185,74,0.10) 60%,transparent 72%);
+    z-index:0; pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:1;}
+  .hero-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  @media (max-width:860px){ .hero-inner{grid-template-columns:1fr; text-align:left;} }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:600; color:var(--teal);
+    background:rgba(53,194,135,0.09);
+    border:1px solid rgba(53,194,135,0.25);
+    padding:6px 12px; border-radius:100px;
+    margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(34px,5vw,54px); font-weight:700; color:var(--ink);}
+  .hero .role{
+    margin-top:10px; font-size:clamp(16px,2.2vw,20px); font-weight:500; color:var(--ink-soft);
+  }
+  .hero p.lead{margin-top:22px; font-size:15.5px; color:var(--ink-soft); max-width:520px;}
+  .hero-cta{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:100px; font-size:14px; font-weight:600;
+    text-decoration:none; transition:transform .15s ease, box-shadow .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--teal); color:var(--navy);}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(53,194,135,0.35);}
+  .btn-outline{border-color:var(--line); background:var(--surface); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--teal); box-shadow:0 8px 20px rgba(53,194,135,0.12);}
+
+  .stat-strip{
+    margin-top:40px; display:flex; gap:0; border-top:1px solid var(--line); padding-top:20px;
+    flex-wrap:wrap;
+  }
+  .stat{padding-right:28px; margin-right:28px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600; color:var(--teal);}
+  .stat .lbl{font-size:12px; color:var(--ink-faint); margin-top:2px;}
+
+  /* avatar / control-chart card */
+  .hero-visual{
+    background:var(--surface); border:1px solid var(--line); border-radius:20px;
+    padding:28px; box-shadow:0 20px 45px -25px rgba(0,0,0,0.35);
+  }
+  .avatar-frame{
+    width:120px; height:120px; border-radius:16px; overflow:hidden;
+    background:linear-gradient(135deg,var(--teal),var(--navy));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:34px;
+    margin:0 auto 18px;
+  }
+  .avatar-frame img{width:100%;height:100%;object-fit:cover;}
+  .visual-name{text-align:center; font-weight:600; font-size:15px;}
+  .visual-role{text-align:center; font-size:12.5px; color:var(--ink-faint); margin-top:2px;}
+
+  .tool-panel{margin-top:22px; border-top:1px solid var(--line); padding-top:18px;}
+  .tool-panel-label{font-size:10.5px; color:var(--ink-faint); margin-bottom:10px;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{margin-bottom:44px;}
+  .sec-eyebrow{
+    font-size:12px; font-weight:600; color:var(--coral);
+    text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .sec-head h2{font-size:clamp(24px,3.2vw,32px); font-weight:700;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-soft); font-size:15px; margin:0 0 14px;}
+  .goal-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; margin-bottom:14px;
+  }
+  .goal-card .tag{font-size:11px; font-weight:600; color:var(--teal); margin-bottom:6px; display:block;}
+  .goal-card p{margin:0; font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  @media (max-width:800px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--teal); border-radius:var(--radius);
+    padding:22px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .skill-card:nth-child(3n+2){border-top-color:var(--coral);}
+  .skill-card:nth-child(3n+3){border-top-color:var(--teal-deep);}
+  .skill-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px -18px rgba(0,0,0,0.35);}
+  .skill-card .idx{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint);}
+  .skill-card h3{font-size:16px; margin:10px 0 8px;}
+  .skill-card p{font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{position:relative; padding-left:32px;}
+  .timeline::before{
+    content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);
+  }
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-32px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:var(--surface); border:3px solid var(--teal);
+  }
+  .tl-date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teal); font-weight:600;}
+  .tl-role{font-size:17px; font-weight:700; margin-top:4px; font-family:'Space Grotesk',sans-serif;}
+  .tl-org{font-size:13.5px; color:var(--ink-faint); margin-top:2px;}
+  .tl-desc{font-size:14.5px; color:var(--ink-soft); margin-top:10px; max-width:620px;}
+  .tl-list{margin:10px 0 0; padding-left:18px; max-width:620px;}
+  .tl-list li{font-size:14px; color:var(--ink-soft); margin-bottom:8px;}
+  .tl-list li b{color:var(--ink); font-weight:600;}
+  .tl-skills{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
+  .tl-skill-chip{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--teal);
+    background:rgba(53,194,135,0.08); border:1px solid rgba(53,194,135,0.2);
+    padding:4px 10px; border-radius:100px;
+  }
+  .slide-slot{
+    margin-top:18px; border:1.5px dashed var(--line); border-radius:12px; padding:16px 18px;
+    font-size:12.5px; color:var(--ink-faint); background:rgba(53,194,135,0.03);
+  }
+  .slide-slot b{color:var(--ink-soft);}
+  .project-stack{display:flex; flex-direction:column; gap:28px;}
+  .growth-grid{display:grid; grid-template-columns:220px 1fr; gap:20px; align-items:start;}
+  @media (max-width:560px){ .growth-grid{grid-template-columns:1fr;} }
+
+  /* ---------- PROJECT ---------- */
+  .project-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  }
+  .project-top{padding:28px 28px 0;}
+  .project-tag{
+    display:inline-block; font-size:11px; font-weight:600; color:var(--coral);
+    background:rgba(240,185,74,0.09); border:1px solid rgba(240,185,74,0.25);
+    padding:5px 10px; border-radius:100px; margin-bottom:12px;
+  }
+  .project-top h3{font-size:22px; font-family:'Space Grotesk',sans-serif;}
+  .project-top p{color:var(--ink-soft); font-size:14.5px; max-width:640px; margin:12px 0 0;}
+  .project-frame{
+    margin:24px 28px 28px; border-radius:12px; overflow:hidden; border:1px solid var(--line);
+    aspect-ratio:16/9; background:var(--bg);
+  }
+  .project-frame iframe{width:100%;height:100%;border:0;}
+  .project-links{display:flex; gap:14px; padding:0 28px 28px;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:800px){.edu-grid{grid-template-columns:1fr;}}
+  .edu-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+  }
+  .edu-card .tag{font-size:11px; color:var(--teal); font-weight:600;}
+  .edu-card h3{font-size:16px; margin:8px 0 4px;}
+  .edu-card .sub{font-size:13.5px; color:var(--ink-faint);}
+  .edu-card p{font-size:13.5px; color:var(--ink-soft); margin-top:10px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-band{
+    background:linear-gradient(135deg,var(--teal-deep),var(--navy) 75%); color:#fff; border-radius:24px; padding:56px 40px;
+    max-width:var(--maxw); margin:0 auto; border:1px solid rgba(53,194,135,0.25);
+  }
+  .contact-band h2{color:#fff; font-size:clamp(24px,3.5vw,34px);}
+  .contact-band p{color:rgba(255,255,255,0.72); margin-top:10px; max-width:480px; font-size:15px;}
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:32px;
+  }
+  @media (max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-item{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px; padding:16px 18px; text-decoration:none; display:flex; gap:12px; align-items:center;
+    transition:background .2s ease;
+  }
+  .contact-item:hover{background:rgba(255,255,255,0.12);}
+  .contact-item .ico{
+    width:34px; height:34px; border-radius:9px; background:rgba(53,194,135,0.25);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--teal);
+  }
+  .contact-item .lbl{font-size:11px; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.04em;}
+  .contact-item .val{font-size:14px; font-weight:600;}
+
+  footer{text-align:center; padding:36px 24px 48px; font-size:12.5px; color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot"></span>Ánh Linh</div>
+    <ul class="nav-links">
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#skills">Kỹ năng</a></li>
+      <li><a href="#experience">Kinh nghiệm</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#education">Học vấn</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow mono">QC → DATA & MARKET RESEARCH</span>
+      <h1>Nguyễn Thị Ánh Linh</h1>
+      <div class="role">Data & Market Research Enthusiast · Nền tảng kiểm soát chất lượng dữ liệu</div>
+      <p class="lead">Mình định hướng phát triển theo hướng ứng dụng công nghệ và phân tích dữ liệu vào hoạt động kinh doanh — xem dữ liệu là nền tảng để tối ưu quy trình và hỗ trợ ra quyết định, với sự chính xác được rèn từ công việc kiểm soát chất lượng.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#project">Xem Project Dashboard</a>
+        <a class="btn btn-outline" href="#contact">Liên hệ với mình</a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="num mono">4 tháng</div><div class="lbl">Thực tập QC tại Cimigo</div></div>
+        <div class="stat"><div class="num mono">2 tháng</div><div class="lbl">Cộng tác viên QC</div></div>
+        <div class="stat"><div class="num mono">KT & KD Số</div><div class="lbl">Trường ĐH Ngân hàng TP.HCM</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="avatar-frame">
+        <!-- Thay ảnh của bạn: đặt file avatar.jpg cùng thư mục với index.html -->
+        <img src="avatar.jpg" alt="Ảnh chân dung Nguyễn Thị Ánh Linh" onerror="this.style.display='none'; this.parentElement.innerHTML='AL';">
+      </div>
+      <div class="visual-name">Nguyễn Thị Ánh Linh</div>
+      <div class="visual-role">Data & Market Research Enthusiast · TP.HCM</div>
+
+      <div class="tool-panel">
+        <div class="tool-panel-label mono">CÔNG CỤ & LĨNH VỰC QUAN TÂM</div>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">SQL</span>
+          <span class="tl-skill-chip">Power BI</span>
+          <span class="tl-skill-chip">Excel</span>
+          <span class="tl-skill-chip">STATA</span>
+          <span class="tl-skill-chip">Market Research</span>
+          <span class="tl-skill-chip">Data Validation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Về mình</span>
+      <h2>Từ tư duy kiểm soát chất lượng đến phân tích dữ liệu</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Trong quá trình theo học ngành Kinh tế Quốc tế, chuyên ngành Kinh tế & Kinh doanh số tại Trường Đại học Ngân hàng TP.HCM, mình định hướng phát triển theo hướng ứng dụng công nghệ và phân tích dữ liệu vào hoạt động kinh doanh.</p>
+        <p>Mình quan tâm đến việc sử dụng dữ liệu như một nền tảng để tối ưu hóa quy trình và hỗ trợ ra quyết định — đây cũng là điều mình đã thực hành trực tiếp qua công việc kiểm soát chất lượng tại Cimigo và các project của riêng mình.</p>
+      </div>
+      <div>
+        <div class="goal-card">
+          <span class="tag mono">MỤC TIÊU NGẮN HẠN (1–2 NĂM)</span>
+          <p>Làm việc và hỗ trợ trong các dự án dữ liệu và chuyển đổi số; song song trau dồi kỹ năng xử lý, phân tích dữ liệu, tư duy phân tích và khả năng truyền đạt trong môi trường chuyên nghiệp.</p>
+        </div>
+        <div class="goal-card">
+          <span class="tag mono">MỤC TIÊU DÀI HẠN (3–5 NĂM)</span>
+          <p>Trở thành chuyên viên nghiên cứu hoặc phân tích dữ liệu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Kỹ năng</span>
+      <h2>Chính xác như QC, tư duy như Analyst</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="idx mono">01</span>
+        <h3>Phân tích dữ liệu</h3>
+        <p>Truy vấn và xử lý dữ liệu với SQL, xây dựng dashboard trực quan với Power BI để hỗ trợ ra quyết định.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">02</span>
+        <h3>Xác thực độ tin cậy dữ liệu</h3>
+        <p>Kiểm tra, đối chiếu và đảm bảo tính chính xác của dữ liệu trước khi đưa vào phân tích — kỹ năng được rèn từ công việc QC.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">03</span>
+        <h3>Chú ý chi tiết</h3>
+        <p>Phát hiện sai lệch, bất thường nhỏ trong dữ liệu và quy trình mà người khác dễ bỏ sót.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">04</span>
+        <h3>Quản lý thời gian</h3>
+        <p>Sắp xếp và ưu tiên công việc hợp lý để đảm bảo tiến độ khi xử lý nhiều đầu việc song song.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">05</span>
+        <h3>Tin học văn phòng</h3>
+        <p>Thành thạo Excel, Word, PowerPoint phục vụ báo cáo và trình bày kết quả phân tích.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">06</span>
+        <h3>SQL & Power BI</h3>
+        <p>Đã hoàn thành khóa học Data Analytics, thực hành xây dựng báo cáo và dashboard thực tế.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Kinh nghiệm</span>
+      <h2>Hành trình tại Cimigo</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date mono">10/2025 — 01/2026</div>
+        <div class="tl-role">Thực tập sinh Kiểm soát Chất lượng</div>
+        <div class="tl-org">Cimigo</div>
+        <p class="tl-desc">Hỗ trợ đội ngũ Quản lý Dự án và Kiểm soát Chất lượng (QC) trong quá trình thu thập dữ liệu sơ cấp và đảm bảo tính toàn vẹn dữ liệu xuyên suốt nhiều dự án nghiên cứu thị trường quy mô lớn (FMCG, Ngân hàng, Giáo dục, Ô tô và Đồ gia dụng).</p>
+        <ul class="tl-list">
+          <li><b>Kiểm soát chất lượng & Xác thực dữ liệu:</b> Rà soát và xác thực hơn 1.000 file phỏng vấn ghi âm và phiếu Central Location Test (CLT). Sử dụng Excel, Google Sheets, Google Forms và SurveyToGo để kiểm tra tính chính xác của dữ liệu, đối chiếu hồ sơ người tham gia và kiểm tra nhật ký GPS của phỏng vấn viên tại nhiều khu vực (TP.HCM, Hà Nội, Hải Phòng, Cần Thơ...).</li>
+          <li><b>Nghiên cứu và tìm kiếm thông tin sản phẩm:</b> Thực hiện market mapping, tổng hợp thông số sản phẩm (giá, dung tích/khối lượng đóng gói, tình trạng lưu hành trên thị trường) cho nhiều ngành hàng: chăm sóc giặt ủi, rửa chén, chăm sóc cá nhân (dầu gội), ngân hàng, giáo dục, ô tô và đồ gia dụng.</li>
+          <li><b>Vận hành dự án & hỗ trợ hiện trường:</b> Điều phối công tác hiện trường cho các dự án CLT, gồm chuẩn bị phòng phỏng vấn, quà tặng cho người tham gia, và phân loại ảnh/video xác minh người trả lời.</li>
+          <li><b>Phương pháp & quy trình QC:</b> Được đào tạo bài bản về xác thực dữ liệu nghiên cứu thị trường, gồm tuân thủ briefing bảng hỏi, đồng nhất giữa các phỏng vấn viên và theo dõi tiến độ công việc qua timesheet.</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">Data Validation</span>
+          <span class="tl-skill-chip">QC</span>
+          <span class="tl-skill-chip">Quản lý thời gian</span>
+          <span class="tl-skill-chip">Nghiên cứu thứ cấp</span>
+          <span class="tl-skill-chip">Hỗ trợ dự án</span>
+          <span class="tl-skill-chip">MS Office</span>
+          <span class="tl-skill-chip">Chú ý chi tiết</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">05/2026 — 06/2026</div>
+        <div class="tl-role">Cộng tác viên Kiểm soát Chất lượng</div>
+        <div class="tl-org">Cimigo</div>
+        <p class="tl-desc">Rà soát và xác thực các file phỏng vấn ghi âm, đối chiếu chéo dữ liệu qua SurveyToGo, Excel và Google Forms nhằm đảm bảo độ tin cậy dữ liệu cho các dự án nghiên cứu thị trường.</p>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">Data Validation</span>
+          <span class="tl-skill-chip">Chú ý chi tiết</span>
+          <span class="tl-skill-chip">Quản lý thời gian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Project</span>
+      <h2>Dự án cá nhân</h2>
+    </div>
+    <div class="project-stack">
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag">POWER BI · KHÓA HỌC DATA ANALYTICS</span>
+          <h3>Dashboard phân tích kinh doanh E-commerce (2012–2015)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 06/2026</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0;">
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Xây dựng dashboard phân tích hiệu quả kinh doanh của doanh nghiệp thương mại điện tử, đánh giá hiệu quả bán hàng, hành vi khách hàng, hiệu suất sản phẩm và các kênh marketing nhằm hỗ trợ ra quyết định kinh doanh.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Công cụ</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Power BI</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);">Kết quả đạt được</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li>Xây dựng dashboard phân tích toàn diện hoạt động kinh doanh thương mại điện tử từ dữ liệu bán hàng và hành vi người dùng.</li>
+              <li>Chuyển đổi dữ liệu thành các chỉ số và business insights, hỗ trợ đánh giá hiệu quả kinh doanh và đề xuất giải pháp cải thiện.</li>
+            </ul>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);">Insights nổi bật</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li><b>Doanh thu:</b> Doanh thu thuần tăng trưởng liên tục trong giai đoạn 2012–2015 và sẽ sớm đạt mục tiêu vào quý 2/2015. Tăng trưởng này đến từ số lượng đơn hàng và giá trị đơn hàng trung bình (AOV), trong đó số lượng đơn hàng đóng góp nhiều hơn vào doanh thu.</li>
+              <li><b>Traffic:</b> Lượng truy cập dù cao nhưng chưa mang lại tỷ lệ chuyển đổi tốt — người dùng chưa thực sự bị thuyết phục bởi các trang đích tiếp thị hay trang sản phẩm.</li>
+              <li><b>Products:</b> Hơn 80% doanh thu đến từ 2 sản phẩm chủ lực, phản ánh sự phụ thuộc lớn vào một số sản phẩm chính và cơ hội đa dạng hóa danh mục.</li>
+              <li><b>Customers:</b> Tăng trưởng chủ yếu đến từ khách hàng mới; khách hàng quay lại tuy ít nhưng mang lại giá trị cao hơn. Tỷ lệ mua lại thấp có thể đến từ đặc điểm sản phẩm kinh doanh — gấu bông.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:20px;">
+              <span class="tl-skill-chip">Phân tích & trực quan hóa dữ liệu (Power BI)</span>
+              <span class="tl-skill-chip">DAX & mô hình dữ liệu</span>
+              <span class="tl-skill-chip">Thiết kế KPI Dashboard</span>
+              <span class="tl-skill-chip">Phân tích hành vi khách hàng</span>
+              <span class="tl-skill-chip">Business Insights</span>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiNzUwYzBiNzMtMjI1ZS00ZjNjLThjOTQtZGI5OWVlNTMwZmEwIiwidCI6IjVlOGIzMjY5LTc2Y2EtNDU3Yy04NDdmLTQ0NGUzZGI5ODZhNyIsImMiOjl9" target="_blank" rel="noopener">Xem Dashboard đầy đủ ↗</a>
+
+          <div style="margin-top:22px; border-top:1px dashed var(--line); padding-top:20px;">
+            <p style="font-size:11px; font-weight:600; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 12px;">Quá trình phát triển kỹ năng</p>
+            <div class="growth-grid">
+              <div>
+                <img src="first-dashboard.png" alt="Dashboard Power BI đầu tiên của Ánh Linh" style="border-radius:10px; border:1px solid var(--line); width:100%;">
+                <p style="font-size:11.5px; color:var(--ink-faint); margin:6px 0 0; text-align:center;">Dashboard Power BI đầu tiên</p>
+              </div>
+              <p style="font-size:14px; color:var(--ink-soft); margin:0;">Đây là dashboard Power BI đầu tiên mình từng làm khi mới bắt đầu học Data Analytics — tập trung liệt kê các chỉ số và biểu đồ mô tả (doanh thu, lợi nhuận, số lượng đơn). Từ đó đến dashboard E-commerce phía trên, mình đã học thêm cách dùng DAX, thiết kế KPI có trọng tâm, và quan trọng nhất là chuyển từ "hiển thị số liệu" sang "kể chuyện bằng dữ liệu" — đặt câu hỏi kinh doanh trước, rồi mới chọn biểu đồ để trả lời.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag" style="color:var(--teal); background:rgba(53,194,135,0.14); border-color:rgba(53,194,135,0.32);">STATA · KHÓA LUẬN TỐT NGHIỆP</span>
+          <h3>Phân tích mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế tại các quốc gia châu Á (2009–2023)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 05/2025 — 09/2025</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0;">
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Phân tích và đánh giá mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế của các quốc gia châu Á giai đoạn 2009–2023, từ đó đưa ra các khuyến nghị chính sách phù hợp cho từng nhóm quốc gia theo mức thu nhập.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Đối tượng & phạm vi</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế tại 47 quốc gia châu Á, giai đoạn 2009–2023.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Công cụ & phương pháp</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Tổng hợp và làm sạch dữ liệu — Excel; Phân tích dữ liệu — STATA (Phân tích thành phần chính PCA, hồi quy dữ liệu bảng FEM/REM/FGLS); Soạn thảo & trình bày báo cáo — Word.</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);">Kết quả nghiên cứu</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li>Chuyển đổi số có mối tương quan dương với tăng trưởng kinh tế của các quốc gia châu Á, củng cố giả thuyết ban đầu của nghiên cứu.</li>
+              <li>Mối tương quan này càng mạnh ở các quốc gia có mức thu nhập càng cao — cho thấy sự khác biệt rõ rệt giữa các nhóm quốc gia theo thu nhập.</li>
+            </ul>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);">Khuyến nghị chính sách</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li>Xác định chuyển đổi số là một trụ cột quan trọng trong thúc đẩy tăng trưởng kinh tế dài hạn, cần được tích hợp vào các kế hoạch phát triển kinh tế - xã hội.</li>
+              <li>Mỗi nhóm quốc gia theo thu nhập cần chiến lược phù hợp: nhóm thu nhập thấp/trung bình thấp nên chú trọng yếu tố nền tảng, trong khi nhóm thu nhập cao/trung bình cao nên đẩy mạnh công nghệ số tiên tiến và mô hình kinh doanh mới.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:20px;">
+              <span class="tl-skill-chip">Phân tích dữ liệu vĩ mô (STATA)</span>
+              <span class="tl-skill-chip">Nghiên cứu thị trường & chính sách</span>
+              <span class="tl-skill-chip">Quản lý tiến độ & tự học</span>
+              <span class="tl-skill-chip">Viết báo cáo học thuật</span>
+            </div>
+          </div>
+          <!-- Khi đã upload file PDF slide lên cùng thư mục với index.html, đổi href bên dưới thành đúng tên file, ví dụ: href="kltn-slide.pdf" -->
+          <a class="btn btn-primary" href="kltn-slide.pdf" target="_blank" rel="noopener">Xem slide thuyết minh (PDF) ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag" style="color:var(--coral); background:rgba(240,185,74,0.14); border-color:rgba(240,185,74,0.32);">THE FORAGE · BCG VIRTUAL EXPERIENCE</span>
+          <h3>Tư vấn chuyển đổi số cho doanh nghiệp F&B (CoffeeCo)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 12/2024 — 02/2025</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0;">
+            <p style="font-size:13.5px; color:var(--ink-faint); margin:0 0 16px;">Chương trình mô phỏng việc làm trực tuyến trên nền tảng The Forage do BCG (Boston Consulting Group) tổ chức.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Thực hành quy trình nghiên cứu và đề xuất giải pháp chuyển đổi số cho CoffeeCo — một doanh nghiệp ngành F&B: nghiên cứu thị trường, phân tích dữ liệu khách hàng để rút ra insight, đề xuất ý tưởng chuyển đổi số và quản lý tiến độ dự án theo Agile trên Trello.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);">Công cụ</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Xây dựng & chọn lọc ý tưởng — MindMeister; Phân tích, xử lý dữ liệu — Excel; Trình bày & trực quan hóa — Canva, PowerPoint; Hỗ trợ gợi ý đa chiều — AI.</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);">Kết quả</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li>Hoàn thành bộ case study (6 tasks) theo yêu cầu của BCG.</li>
+              <li>Đề xuất được giải pháp chuyển đổi số cho khách hàng.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:0;">
+              <span class="tl-skill-chip">Brainstorming & sàng lọc ý tưởng</span>
+              <span class="tl-skill-chip">Phân tích & trực quan hóa dữ liệu (Excel)</span>
+              <span class="tl-skill-chip">Tin học văn phòng</span>
+              <span class="tl-skill-chip">Làm việc độc lập</span>
+              <span class="tl-skill-chip">Giải quyết vấn đề</span>
+              <span class="tl-skill-chip">Quản lý tiến độ (Agile/Trello)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Học vấn</span>
+      <h2>Nền tảng học thuật</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <span class="tag mono">2022 — DỰ KIẾN 2026</span>
+        <h3>Đại học Ngân hàng TP.HCM</h3>
+        <div class="sub">Kinh tế Quốc tế · Chuyên ngành Kinh tế & Kinh doanh số</div>
+        <p>Dự kiến tốt nghiệp năm 2026.</p>
+        <p style="margin-top:8px;">GPA: <b style="color:var(--ink);">3.2/4</b> (tương đương <b style="color:var(--ink);">8.2/10</b>)</p>
+      </div>
+      <div class="edu-card">
+        <span class="tag mono">TỪ 04/2026</span>
+        <h3>Khóa học Data Analytics</h3>
+        <div class="sub">Học online · SQL & Power BI</div>
+        <p>Hoàn thành các nội dung về SQL, Power BI và áp dụng vào project dashboard e-commerce thực tế.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-band">
+    <h2>Cùng trao đổi công việc nhé</h2>
+    <p>Mình luôn sẵn sàng lắng nghe cơ hội thực tập/công việc liên quan đến dữ liệu và kiểm soát chất lượng.</p>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:anhlinhnt03@gmail.com">
+        <span class="ico">✉</span>
+        <span><span class="lbl">Email</span><br><span class="val">anhlinhnt03@gmail.com</span></span>
+      </a>
+      <a class="contact-item" href="tel:0337688768">
+        <span class="ico">☎</span>
+        <span><span class="lbl">Điện thoại</span><br><span class="val">0337 688 768</span></span>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/anhlinhnguyenthi" target="_blank" rel="noopener">
+        <span class="ico">in</span>
+        <span><span class="lbl">LinkedIn</span><br><span class="val">anhlinhnguyenthi</span></span>
+      </a>
+      <a class="contact-item" href="#" onclick="return false;">
+        <span class="ico">📍</span>
+        <span><span class="lbl">Khu vực</span><br><span class="val">Thủ Đức, TP.HCM</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Nguyễn Thị Ánh Linh · Portfolio này được xây dựng để đồng hành cùng CV.</footer>
+
+</body>
+</html>
