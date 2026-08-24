@@ -18,16 +18,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B2117;
-    --surface:#123324;
-    --ink:#F4F7F3;
-    --ink-soft:#C3D2C7;
-    --ink-faint:#87A092;
-    --teal:#35C287;
-    --teal-deep:#1F8F62;
-    --coral:#F0B94A;
-    --navy:#081810;
-    --line:rgba(255,255,255,0.12);
+    --bg:#CCE3C2;
+    --surface:#FFFFFF;
+    --ink:#1C2A1F;
+    --ink-soft:#44543F;
+    --ink-faint:#6E7D69;
+    --teal:#4F9A6B;
+    --teal-deep:#357350;
+    --coral:#D9A441;
+    --navy:#2E4A34;
+    --line:rgba(28,42,31,0.16);
     --radius:14px;
     --maxw:1080px;
   }
@@ -35,6 +35,664 @@
   html{scroll-behavior:smooth;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  section{padding:96px 24px;}
+  section#skills{
+    background:linear-gradient(180deg,rgba(79,154,107,0.05),rgba(217,164,65,0.04));
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  .lang-switch{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:100px; padding:3px;}
+  .lang-switch button{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:600; letter-spacing:0.03em;
+    border:none; background:transparent; color:var(--ink-faint); padding:5px 11px; border-radius:100px;
+    cursor:pointer; transition:background .2s ease, color .2s ease;
+  }
+  .lang-switch button.active{background:var(--teal); color:var(--navy);}
+  .lang-switch button:not(.active):hover{color:var(--ink);}
+  @media (max-width:640px){ .lang-switch button{padding:4px 8px; font-size:10.5px;} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(204,227,194,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    padding:16px 24px;
+  }
+  .nav-logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:17px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-size:14px; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--teal);}
+  @media (max-width:640px){ .nav-links{gap:16px;} .nav-links a{font-size:12.5px;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 24px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; top:-120px; right:-100px; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle,rgba(79,154,107,0.16),rgba(217,164,65,0.10) 60%,transparent 72%);
+    z-index:0; pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:1;}
+  .hero-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  @media (max-width:860px){ .hero-inner{grid-template-columns:1fr; text-align:left;} }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; color:var(--teal-deep);
+    background:var(--surface);
+    border:1px solid rgba(79,154,107,0.35);
+    padding:6px 12px; border-radius:100px;
+    margin-bottom:22px;
+    box-shadow:0 2px 8px rgba(28,42,31,0.08);
+  }
+  .hero h1{font-size:clamp(34px,5vw,54px); font-weight:700; color:var(--ink);}
+  .hero .role{
+    margin-top:10px; font-size:clamp(16px,2.2vw,20px); font-weight:500; color:var(--ink-soft);
+  }
+  .hero p.lead{margin-top:22px; font-size:15.5px; color:var(--ink-soft); max-width:520px;}
+  .hero-cta{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:100px; font-size:14px; font-weight:600;
+    text-decoration:none; transition:transform .15s ease, box-shadow .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--teal); color:var(--navy);}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(79,154,107,0.35);}
+  .btn-outline{border-color:var(--line); background:var(--surface); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--teal); box-shadow:0 8px 20px rgba(79,154,107,0.12);}
+
+  .stat-strip{
+    margin-top:40px; display:flex; gap:0; border-top:1px solid var(--line); padding-top:20px;
+    flex-wrap:wrap;
+  }
+  .stat{padding-right:28px; margin-right:28px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600; color:var(--teal);}
+  .stat .lbl{font-size:12px; color:var(--ink-faint); margin-top:2px;}
+
+  /* avatar / control-chart card */
+  .hero-visual{
+    background:var(--surface); border:1px solid var(--line); border-radius:20px;
+    padding:28px; box-shadow:0 20px 45px -25px rgba(0,0,0,0.35);
+  }
+  .avatar-frame{
+    width:120px; height:120px; border-radius:16px; overflow:hidden;
+    background:linear-gradient(135deg,var(--teal),var(--navy));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:34px;
+    margin:0 auto 18px;
+  }
+  .avatar-frame img{width:100%;height:100%;object-fit:cover;}
+  .visual-name{text-align:center; font-weight:600; font-size:15px;}
+  .visual-role{text-align:center; font-size:12.5px; color:var(--ink-faint); margin-top:2px;}
+
+  .tool-panel{margin-top:22px; border-top:1px solid var(--line); padding-top:18px;}
+  .tool-panel-label{font-size:10.5px; color:var(--ink-faint); margin-bottom:10px;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{margin-bottom:44px;}
+  .sec-eyebrow{
+    font-size:12px; font-weight:600; color:var(--coral);
+    text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .sec-head h2{font-size:clamp(24px,3.2vw,32px); font-weight:700;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-soft); font-size:15px; margin:0 0 14px;}
+  .goal-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; margin-bottom:14px;
+  }
+  .goal-card .tag{font-size:11px; font-weight:600; color:var(--teal); margin-bottom:6px; display:block;}
+  .goal-card p{margin:0; font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  @media (max-width:800px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--teal); border-radius:var(--radius);
+    padding:22px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .skill-card:nth-child(3n+2){border-top-color:var(--coral);}
+  .skill-card:nth-child(3n+3){border-top-color:var(--teal-deep);}
+  .skill-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px -18px rgba(0,0,0,0.35);}
+  .skill-card .idx{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-faint);}
+  .skill-card h3{font-size:16px; margin:10px 0 8px;}
+  .skill-card p{font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{position:relative; padding-left:32px;}
+  .timeline::before{
+    content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);
+  }
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-32px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:var(--surface); border:3px solid var(--teal);
+  }
+  .tl-date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teal); font-weight:600;}
+  .tl-role{font-size:17px; font-weight:700; margin-top:4px; font-family:'Space Grotesk',sans-serif;}
+  .tl-org{font-size:13.5px; color:var(--ink-faint); margin-top:2px;}
+  .tl-desc{font-size:14.5px; color:var(--ink-soft); margin-top:10px;}
+  .tl-list{margin:10px 0 0; padding-left:18px;}
+  .tl-list li{font-size:14px; color:var(--ink-soft); margin-bottom:8px;}
+  .tl-list li b{color:var(--ink); font-weight:600;}
+  .tl-skills{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
+  .tl-skill-chip{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--teal-deep); font-weight:600;
+    background:var(--surface); border:1px solid rgba(79,154,107,0.3);
+    padding:4px 10px; border-radius:100px;
+  }
+  .slide-slot{
+    margin-top:18px; border:1.5px dashed var(--line); border-radius:12px; padding:16px 18px;
+    font-size:12.5px; color:var(--ink-faint); background:rgba(79,154,107,0.03);
+  }
+  .slide-slot b{color:var(--ink-soft);}
+  .project-stack{display:flex; flex-direction:column; gap:28px;}
+  .growth-grid{display:grid; grid-template-columns:220px 1fr; gap:20px; align-items:start;}
+  @media (max-width:560px){ .growth-grid{grid-template-columns:1fr;} }
+
+  /* ---------- PROJECT ---------- */
+  .project-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  }
+  .project-top{padding:28px 28px 0;}
+  .project-tag{
+    display:inline-block; font-size:11px; font-weight:600; color:var(--coral);
+    background:rgba(217,164,65,0.09); border:1px solid rgba(217,164,65,0.25);
+    padding:5px 10px; border-radius:100px; margin-bottom:12px;
+  }
+  .project-top h3{font-size:22px; font-family:'Space Grotesk',sans-serif;}
+  .project-top p{color:var(--ink-soft); font-size:14.5px; max-width:640px; margin:12px 0 0;}
+  .project-frame{
+    margin:24px 28px 28px; border-radius:12px; overflow:hidden; border:1px solid var(--line);
+    aspect-ratio:16/9; background:var(--bg);
+  }
+  .project-frame iframe{width:100%;height:100%;border:0;}
+  .project-links{display:flex; gap:14px; padding:0 28px 28px;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:800px){.edu-grid{grid-template-columns:1fr;}}
+  .edu-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+  }
+  .edu-card .tag{font-size:11px; color:var(--teal); font-weight:600;}
+  .edu-card h3{font-size:16px; margin:8px 0 4px;}
+  .edu-card .sub{font-size:13.5px; color:var(--ink-faint);}
+  .edu-card p{font-size:13.5px; color:var(--ink-soft); margin-top:10px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-band{
+    background:linear-gradient(135deg,var(--teal-deep),var(--navy) 75%); color:#fff; border-radius:24px; padding:56px 40px;
+    max-width:var(--maxw); margin:0 auto; border:1px solid rgba(79,154,107,0.25);
+  }
+  .contact-band h2{color:#fff; font-size:clamp(24px,3.5vw,34px);}
+  .contact-band p{color:rgba(255,255,255,0.72); margin-top:10px; max-width:480px; font-size:15px;}
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:32px;
+  }
+  @media (max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-item{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px; padding:16px 18px; text-decoration:none; display:flex; gap:12px; align-items:center;
+    transition:background .2s ease;
+  }
+  .contact-item:hover{background:rgba(255,255,255,0.12);}
+  .contact-item .ico{
+    width:34px; height:34px; border-radius:9px; background:rgba(79,154,107,0.25);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--teal);
+  }
+  .contact-item .lbl{font-size:11px; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.04em;}
+  .contact-item .val{font-size:14px; font-weight:600;}
+
+  footer{text-align:center; padding:36px 24px 48px; font-size:12.5px; color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot"></span>Ánh Linh</div>
+    <ul class="nav-links">
+      <li><a href="#about" data-en="About">Giới thiệu</a></li>
+      <li><a href="#skills" data-en="Skills">Kỹ năng</a></li>
+      <li><a href="#experience" data-en="Experience">Kinh nghiệm</a></li>
+      <li><a href="#project" data-en="Projects">Project</a></li>
+      <li><a href="#education" data-en="Education">Học vấn</a></li>
+      <li><a href="#contact" data-en="Contact">Liên hệ</a></li>
+    </ul>
+    <div class="lang-switch">
+      <button type="button" data-lang="vi" class="active">VI</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow mono">QC → DATA & MARKET RESEARCH</span>
+      <h1>Nguyễn Thị Ánh Linh</h1>
+      <div class="role" data-en="Data &amp; Market Research Enthusiast · Grounded in Data Quality Control">Data & Market Research Enthusiast · Nền tảng kiểm soát chất lượng dữ liệu</div>
+      <p class="lead" data-en="I'm building my career at the intersection of technology and data analytics in business — treating data as the foundation for optimizing processes and supporting decisions, with the precision instilled by my quality control background.">Em định hướng phát triển theo hướng ứng dụng công nghệ và phân tích dữ liệu vào hoạt động kinh doanh — xem dữ liệu là nền tảng để tối ưu quy trình và hỗ trợ ra quyết định, với sự chính xác được rèn từ công việc kiểm soát chất lượng.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#project" data-en="View Dashboard Project">Xem Project Dashboard</a>
+        <a class="btn btn-outline" href="#contact" data-en="Get in Touch">Liên hệ với em</a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="num mono" data-en="4 months">4 tháng</div><div class="lbl" data-en="QC Internship at Cimigo">Thực tập QC tại Cimigo</div></div>
+        <div class="stat"><div class="num mono" data-en="2 months">2 tháng</div><div class="lbl" data-en="QC Collaborator">Cộng tác viên QC</div></div>
+        <div class="stat"><div class="num mono" data-en="Digital Econ. &amp; Business">KT & KD Số</div><div class="lbl" data-en="Banking University of HCMC">Trường ĐH Ngân hàng TP.HCM</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="avatar-frame">
+        <!-- Thay ảnh của bạn: đặt file avatar.jpg cùng thư mục với index.html -->
+        <img src="avatar.jpg" alt="Ảnh chân dung Nguyễn Thị Ánh Linh" onerror="this.style.display='none'; this.parentElement.innerHTML='AL';">
+      </div>
+      <div class="visual-name">Nguyễn Thị Ánh Linh</div>
+      <div class="visual-role" data-en="Data &amp; Market Research Enthusiast · Ho Chi Minh City">Data & Market Research Enthusiast · TP.HCM</div>
+
+      <div class="tool-panel">
+        <div class="tool-panel-label mono" data-en="TOOLS &amp; AREAS OF INTEREST">CÔNG CỤ & LĨNH VỰC QUAN TÂM</div>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">SQL</span>
+          <span class="tl-skill-chip">Power BI</span>
+          <span class="tl-skill-chip">Excel</span>
+          <span class="tl-skill-chip">STATA</span>
+          <span class="tl-skill-chip">Market Research</span>
+          <span class="tl-skill-chip">Data Validation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-en="About Me">Về em</span>
+      <h2 data-en="From a Quality-Control Mindset to Data Analysis">Từ tư duy kiểm soát chất lượng đến phân tích dữ liệu</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p style="font-style:italic; color:var(--ink-soft);" data-en="Dear Hiring Manager,">Xin chào Quý nhà tuyển dụng,</p>
+        <p data-en="While studying International Economics, majoring in Digital Economy &amp; Business at Banking University of Ho Chi Minh City, I've been focused on applying technology and data analytics to business operations.">Trong quá trình theo học ngành Kinh tế Quốc tế, chuyên ngành Kinh tế & Kinh doanh số tại Trường Đại học Ngân hàng TP.HCM, em định hướng phát triển theo hướng ứng dụng công nghệ và phân tích dữ liệu vào hoạt động kinh doanh.</p>
+        <p data-en="I'm passionate about using data as a foundation to optimize processes and support decision-making — something I've practiced firsthand through my quality control work at Cimigo and my own personal projects.">Em quan tâm đến việc sử dụng dữ liệu như một nền tảng để tối ưu hóa quy trình và hỗ trợ ra quyết định — đây cũng là điều em đã thực hành trực tiếp qua công việc kiểm soát chất lượng tại Cimigo và các project của riêng em.</p>
+        <p style="font-style:italic; color:var(--ink-soft);" data-en="I'd be delighted to connect with you, and I hope we'll have the chance for a deeper conversation if there's a good fit between us. Thank you for your time and consideration.">Em rất vui khi được kết nối với Quý nhà tuyển dụng, hi vọng sẽ có cơ hội được trò chuyện sâu hơn nếu có sự phù hợp giữa hai bên. Xin cảm ơn sự quan tâm của Quý nhà tuyển dụng.</p>
+      </div>
+      <div>
+        <div class="goal-card">
+          <span class="tag mono" data-en="SHORT-TERM GOAL (1–2 YEARS)">MỤC TIÊU NGẮN HẠN (1–2 NĂM)</span>
+          <p data-en="Work on and support data and digital transformation projects, while sharpening my data processing and analysis skills, analytical thinking, and communication in a professional environment.">Làm việc và hỗ trợ trong các dự án dữ liệu và chuyển đổi số; song song trau dồi kỹ năng xử lý, phân tích dữ liệu, tư duy phân tích và khả năng truyền đạt trong môi trường chuyên nghiệp.</p>
+        </div>
+        <div class="goal-card">
+          <span class="tag mono" data-en="LONG-TERM GOAL (3–5 YEARS)">MỤC TIÊU DÀI HẠN (3–5 NĂM)</span>
+          <p data-en="Become a research or data analysis specialist.">Trở thành chuyên viên nghiên cứu hoặc phân tích dữ liệu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-en="Skills">Kỹ năng</span>
+      <h2 data-en="Precise like QC, thinking like an Analyst">Chính xác như QC, tư duy như Analyst</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="idx mono">01</span>
+        <h3 data-en="Data Analysis">Phân tích dữ liệu</h3>
+        <p data-en="Querying and processing data with SQL, building visual dashboards with Power BI to support decision-making.">Truy vấn và xử lý dữ liệu với SQL, xây dựng dashboard trực quan với Power BI để hỗ trợ ra quyết định.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">02</span>
+        <h3 data-en="Data Reliability Validation">Xác thực độ tin cậy dữ liệu</h3>
+        <p data-en="Checking, cross-referencing, and ensuring data accuracy before analysis — a skill honed through QC work.">Kiểm tra, đối chiếu và đảm bảo tính chính xác của dữ liệu trước khi đưa vào phân tích — kỹ năng được rèn từ công việc QC.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">03</span>
+        <h3 data-en="Attention to Detail">Chú ý chi tiết</h3>
+        <p data-en="Spotting small discrepancies and anomalies in data and processes that others easily miss.">Phát hiện sai lệch, bất thường nhỏ trong dữ liệu và quy trình mà người khác dễ bỏ sót.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">04</span>
+        <h3 data-en="Time Management">Quản lý thời gian</h3>
+        <p data-en="Organizing and prioritizing tasks effectively to stay on schedule when handling multiple workstreams.">Sắp xếp và ưu tiên công việc hợp lý để đảm bảo tiến độ khi xử lý nhiều đầu việc song song.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">05</span>
+        <h3 data-en="Office Software">Tin học văn phòng</h3>
+        <p data-en="Proficient in Excel, Word, and PowerPoint for reporting and presenting analytical results.">Thành thạo Excel, Word, PowerPoint phục vụ báo cáo và trình bày kết quả phân tích.</p>
+      </div>
+      <div class="skill-card">
+        <span class="idx mono">06</span>
+        <h3>SQL & Power BI</h3>
+        <p data-en="Completed a Data Analytics course, practicing hands-on report and dashboard building.">Đã hoàn thành khóa học Data Analytics, thực hành xây dựng báo cáo và dashboard thực tế.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-en="Experience">Kinh nghiệm</span>
+      <h2 data-en="My Journey at Cimigo">Hành trình tại Cimigo</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date mono">05/2026 — 06/2026</div>
+        <div class="tl-role" data-en="Quality Control Collaborator">Cộng tác viên Kiểm soát Chất lượng</div>
+        <div class="tl-org" data-en="Cimigo Market Research Company">Công ty Nghiên cứu thị trường Cimigo</div>
+        <p class="tl-desc" data-en="Reviewed and validated over 100 audio interview files, cross-checking data via SurveyToGo, Excel, and Google Forms to ensure data reliability for two market research projects in the personal care and mobile devices sectors.">Rà soát và xác thực hơn 100 file phỏng vấn ghi âm, đối chiếu chéo dữ liệu qua SurveyToGo, Excel và Google Forms nhằm đảm bảo độ tin cậy dữ liệu cho hai dự án nghiên cứu thị trường thuộc lĩnh vực chăm sóc cá nhân và thiết bị di động.</p>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">Data Validation</span>
+          <span class="tl-skill-chip" data-en="Attention to Detail">Chú ý chi tiết</span>
+          <span class="tl-skill-chip" data-en="Time Management">Quản lý thời gian</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date mono">10/2025 — 01/2026</div>
+        <div class="tl-role" data-en="Quality Control Intern">Thực tập sinh Kiểm soát Chất lượng</div>
+        <div class="tl-org" data-en="Cimigo Market Research Company">Công ty Nghiên cứu thị trường Cimigo</div>
+        <p class="tl-desc" data-en="Supported the Project Management and Quality Control (QC) teams in primary data collection and ensured data integrity across multiple large-scale market research projects (FMCG, Banking, Education, Automotive, and Home Appliances).">Hỗ trợ đội ngũ Quản lý Dự án và Kiểm soát Chất lượng (QC) trong quá trình thu thập dữ liệu sơ cấp và đảm bảo tính toàn vẹn dữ liệu xuyên suốt nhiều dự án nghiên cứu thị trường quy mô lớn (FMCG, Ngân hàng, Giáo dục, Ô tô và Đồ gia dụng).</p>
+        <ul class="tl-list">
+          <li data-en="<b>Quality Control &amp; Data Validation:</b> Reviewed and validated over 1,200 audio interview files and Central Location Test (CLT) forms. Used Excel, Google Sheets, Google Forms, and SurveyToGo to check data accuracy, cross-verify participant profiles, and audit 350 interviewer GPS log files across multiple regions (HCMC, Hanoi, Hai Phong, Can Tho...)."><b>Kiểm soát chất lượng & Xác thực dữ liệu:</b> Rà soát và xác thực hơn 1.200 file phỏng vấn ghi âm và phiếu Central Location Test (CLT). Sử dụng Excel, Google Sheets, Google Forms và SurveyToGo để kiểm tra tính chính xác của dữ liệu, đối chiếu hồ sơ người tham gia và kiểm tra 350 file nhật ký GPS của phỏng vấn viên tại nhiều khu vực (TP.HCM, Hà Nội, Hải Phòng, Cần Thơ...).</li>
+          <li data-en="<b>Product Research &amp; Information Sourcing:</b> Compiled product specifications (pricing, packaging volume, market availability) across multiple categories: laundry care, dishwashing, personal care (shampoo), banking, education, automotive, and home appliances."><b>Nghiên cứu và tìm kiếm thông tin sản phẩm:</b> Tổng hợp thông số sản phẩm (giá, dung tích/khối lượng đóng gói, tình trạng lưu hành trên thị trường) cho nhiều ngành hàng: chăm sóc giặt ủi, rửa chén, chăm sóc cá nhân (dầu gội), ngân hàng, giáo dục, ô tô và đồ gia dụng.</li>
+          <li data-en="<b>Project Operations &amp; Fieldwork Support:</b> Coordinated fieldwork operations for CLT projects, including setting up interview rooms, preparing participant incentives, and classifying respondent verification photos/videos."><b>Vận hành dự án & hỗ trợ hiện trường:</b> Điều phối công tác hiện trường cho các dự án CLT, gồm chuẩn bị phòng phỏng vấn, quà tặng cho người tham gia, và phân loại ảnh/video xác minh người trả lời.</li>
+          <li data-en="<b>QC Methodology &amp; Process:</b> Received comprehensive training on market research data verification, including questionnaire briefing compliance, interviewer alignment, and workload tracking via timesheets."><b>Phương pháp & quy trình QC:</b> Được đào tạo bài bản về xác thực dữ liệu nghiên cứu thị trường, gồm tuân thủ briefing bảng hỏi, đồng nhất giữa các phỏng vấn viên và theo dõi tiến độ công việc qua timesheet.</li>
+        </ul>
+        <div class="tl-skills">
+          <span class="tl-skill-chip">Data Validation</span>
+          <span class="tl-skill-chip">QC</span>
+          <span class="tl-skill-chip" data-en="Time Management">Quản lý thời gian</span>
+          <span class="tl-skill-chip" data-en="Secondary Research">Nghiên cứu thứ cấp</span>
+          <span class="tl-skill-chip" data-en="Project Support">Hỗ trợ dự án</span>
+          <span class="tl-skill-chip">MS Office</span>
+          <span class="tl-skill-chip" data-en="Attention to Detail">Chú ý chi tiết</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-en="Projects">Project</span>
+      <h2 data-en="Personal Projects">Dự án cá nhân</h2>
+    </div>
+    <div class="project-stack">
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag" data-en="POWER BI · DATA ANALYTICS COURSE">POWER BI · KHÓA HỌC DATA ANALYTICS</span>
+          <h3 data-en="E-commerce Business Analytics Dashboard (2012–2015)">Dashboard phân tích kinh doanh E-commerce (2012–2015)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 06/2026 — 07/2026</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0; max-width:100%;">
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Objective">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="Built a dashboard analyzing the business performance of an e-commerce company — evaluating sales effectiveness, customer behavior, product performance, and marketing channels to support business decisions.">Xây dựng dashboard phân tích hiệu quả kinh doanh của doanh nghiệp thương mại điện tử, đánh giá hiệu quả bán hàng, hành vi khách hàng, hiệu suất sản phẩm và các kênh marketing nhằm hỗ trợ ra quyết định kinh doanh.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Tools">Công cụ</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="Power BI">Power BI</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);" data-en="Results Achieved">Kết quả đạt được</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li data-en="Built a comprehensive dashboard analyzing e-commerce business performance from sales and user-behavior data.">Xây dựng dashboard phân tích toàn diện hoạt động kinh doanh thương mại điện tử từ dữ liệu bán hàng và hành vi người dùng.</li>
+              <li data-en="Converted data into metrics and business insights, supporting performance evaluation and improvement recommendations.">Chuyển đổi dữ liệu thành các chỉ số và business insights, hỗ trợ đánh giá hiệu quả kinh doanh và đề xuất giải pháp cải thiện.</li>
+            </ul>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);" data-en="Key Insights">Insights nổi bật</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li data-en="<b>Revenue:</b> Net revenue grew steadily from 2012–2015 and was on track to hit its target by Q2 2015. This growth came from both order volume and average order value (AOV), with order volume contributing more to revenue."><b>Doanh thu:</b> Doanh thu thuần tăng trưởng liên tục trong giai đoạn 2012–2015 và sẽ sớm đạt mục tiêu vào quý 2/2015. Tăng trưởng này đến từ số lượng đơn hàng và giá trị đơn hàng trung bình (AOV), trong đó số lượng đơn hàng đóng góp nhiều hơn vào doanh thu.</li>
+              <li data-en="<b>Traffic:</b> Traffic was high but conversion rates remained weak — users weren't fully convinced by the marketing landing pages or product pages."><b>Traffic:</b> Lượng truy cập dù cao nhưng chưa mang lại tỷ lệ chuyển đổi tốt — người dùng chưa thực sự bị thuyết phục bởi các trang đích tiếp thị hay trang sản phẩm.</li>
+              <li data-en="<b>Products:</b> Over 80% of revenue came from just 2 core products, reflecting heavy reliance on a few key items and an opportunity to diversify the catalog."><b>Products:</b> Hơn 80% doanh thu đến từ 2 sản phẩm chủ lực, phản ánh sự phụ thuộc lớn vào một số sản phẩm chính và cơ hội đa dạng hóa danh mục.</li>
+              <li data-en="<b>Customers:</b> Growth mainly came from new customers; returning customers were fewer but delivered higher value. The low repurchase rate may stem from the nature of the product — teddy bears."><b>Customers:</b> Tăng trưởng chủ yếu đến từ khách hàng mới; khách hàng quay lại tuy ít nhưng mang lại giá trị cao hơn. Tỷ lệ mua lại thấp có thể đến từ đặc điểm sản phẩm kinh doanh — gấu bông.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);" data-en="Skills Gained">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:20px;">
+              <span class="tl-skill-chip" data-en="Data Analysis &amp; Visualization (Power BI)">Phân tích & trực quan hóa dữ liệu (Power BI)</span>
+              <span class="tl-skill-chip" data-en="DAX &amp; Data Modeling">DAX & mô hình dữ liệu</span>
+              <span class="tl-skill-chip" data-en="KPI Dashboard Design">Thiết kế KPI Dashboard</span>
+              <span class="tl-skill-chip" data-en="Customer Behavior Analysis">Phân tích hành vi khách hàng</span>
+              <span class="tl-skill-chip">Business Insights</span>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiNzUwYzBiNzMtMjI1ZS00ZjNjLThjOTQtZGI5OWVlNTMwZmEwIiwidCI6IjVlOGIzMjY5LTc2Y2EtNDU3Yy04NDdmLTQ0NGUzZGI5ODZhNyIsImMiOjl9" target="_blank" rel="noopener" data-en="View Full Dashboard ↗">Xem Dashboard đầy đủ ↗</a>
+
+          <div style="margin-top:22px; border-top:1px dashed var(--line); padding-top:20px;">
+            <p style="font-size:11px; font-weight:600; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 12px;" data-en="Skill Development Journey">Quá trình phát triển kỹ năng</p>
+            <div class="growth-grid">
+              <div>
+                <img src="first-dashboard.png" alt="Dashboard Power BI đầu tiên của Ánh Linh" style="border-radius:10px; border:1px solid var(--line); width:100%;">
+                <p style="font-size:11.5px; color:var(--ink-faint); margin:6px 0 0; text-align:center;" data-en="My first Power BI dashboard">Dashboard Power BI đầu tiên</p>
+              </div>
+              <p style="font-size:14px; color:var(--ink-soft); margin:0;" data-en="This was the very first Power BI dashboard I ever built when I started learning Data Analytics — mostly just listing metrics and descriptive charts (revenue, profit, order count). Since then, up to the E-commerce dashboard above, I've learned to use DAX, design more focused KPIs, and most importantly, shift from &#8216;displaying numbers&#8217; to &#8216;telling stories with data&#8217; — asking the business question first, then choosing the right chart to answer it.">Đây là dashboard Power BI đầu tiên em từng làm khi mới bắt đầu học Data Analytics — tập trung liệt kê các chỉ số và biểu đồ mô tả (doanh thu, lợi nhuận, số lượng đơn). Từ đó đến dashboard E-commerce phía trên, em đã học thêm cách dùng DAX, thiết kế KPI có trọng tâm, và quan trọng nhất là chuyển từ "hiển thị số liệu" sang "kể chuyện bằng dữ liệu" — đặt câu hỏi kinh doanh trước, rồi mới chọn biểu đồ để trả lời.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag" style="color:var(--teal); background:rgba(79,154,107,0.14); border-color:rgba(79,154,107,0.32);" data-en="STATA · UNDERGRADUATE THESIS">STATA · KHÓA LUẬN TỐT NGHIỆP</span>
+          <h3 data-en="Analyzing the Relationship Between Digital Transformation and Economic Growth in Asian Countries (2009–2023)">Phân tích mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế tại các quốc gia châu Á (2009–2023)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 05/2025 — 09/2025</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0; max-width:100%;">
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Objective">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;">Phân tích và đánh giá mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế của các quốc gia châu Á giai đoạn 2009–2023, từ đó đưa ra các khuyến nghị chính sách phù hợp cho từng nhóm quốc gia theo mức thu nhập.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Scope &amp; Subject">Đối tượng & phạm vi</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="The relationship between digital transformation and economic growth across 47 Asian countries, 2009–2023.">Mối quan hệ giữa chuyển đổi số và tăng trưởng kinh tế tại 47 quốc gia châu Á, giai đoạn 2009–2023.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Tools &amp; Methods">Công cụ & phương pháp</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="Data compilation &amp; cleaning — Excel; Data analysis — STATA (Principal Component Analysis, panel data regression FEM/REM/FGLS); Report writing &amp; presentation — Word.">Tổng hợp và làm sạch dữ liệu — Excel; Phân tích dữ liệu — STATA (Phân tích thành phần chính PCA, hồi quy dữ liệu bảng FEM/REM/FGLS); Soạn thảo & trình bày báo cáo — Word.</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);" data-en="Research Findings">Kết quả nghiên cứu</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li data-en="Digital transformation shows a positive correlation with economic growth across Asian countries, supporting the study's initial hypothesis.">Chuyển đổi số có mối tương quan dương với tăng trưởng kinh tế của các quốc gia châu Á, củng cố giả thuyết ban đầu của nghiên cứu.</li>
+              <li data-en="This correlation strengthens as national income levels rise — revealing clear differences across income groups.">Mối tương quan này càng mạnh ở các quốc gia có mức thu nhập càng cao — cho thấy sự khác biệt rõ rệt giữa các nhóm quốc gia theo thu nhập.</li>
+            </ul>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);" data-en="Policy Recommendations">Khuyến nghị chính sách</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li data-en="Position digital transformation as a key pillar for long-term economic growth, to be integrated into socio-economic development plans.">Xác định chuyển đổi số là một trụ cột quan trọng trong thúc đẩy tăng trưởng kinh tế dài hạn, cần được tích hợp vào các kế hoạch phát triển kinh tế - xã hội.</li>
+              <li data-en="Each income group needs a tailored strategy: lower-income groups should focus on foundational factors, while higher-income groups should advance cutting-edge digital technologies and new business models.">Mỗi nhóm quốc gia theo thu nhập cần chiến lược phù hợp: nhóm thu nhập thấp/trung bình thấp nên chú trọng yếu tố nền tảng, trong khi nhóm thu nhập cao/trung bình cao nên đẩy mạnh công nghệ số tiên tiến và mô hình kinh doanh mới.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);" data-en="Skills Gained">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:20px;">
+              <span class="tl-skill-chip" data-en="Macro Data Analysis (STATA)">Phân tích dữ liệu vĩ mô (STATA)</span>
+              <span class="tl-skill-chip" data-en="Market &amp; Policy Research">Nghiên cứu thị trường & chính sách</span>
+              <span class="tl-skill-chip" data-en="Self-Management &amp; Independent Learning">Quản lý tiến độ & tự học</span>
+              <span class="tl-skill-chip" data-en="Academic Report Writing">Viết báo cáo học thuật</span>
+            </div>
+          </div>
+          <!-- Khi đã upload file PDF slide lên cùng thư mục với index.html, đổi href bên dưới thành đúng tên file, ví dụ: href="kltn-slide.pdf" -->
+          <a class="btn btn-primary" href="kltn-slide.pdf" target="_blank" rel="noopener" data-en="View Presentation Slides (PDF) ↗">Xem slide thuyết minh (PDF) ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-tag" style="color:var(--coral); background:rgba(217,164,65,0.14); border-color:rgba(217,164,65,0.32);">THE FORAGE · BCG VIRTUAL EXPERIENCE</span>
+          <h3 data-en="Digital Transformation Consulting for an F&amp;B Business (CoffeeCo)">Tư vấn chuyển đổi số cho doanh nghiệp F&B (CoffeeCo)</h3>
+          <div class="mono" style="font-size:12px; color:var(--ink-faint); margin-top:6px;">Thời gian thực hiện: 12/2024 — 02/2025</div>
+        </div>
+        <div style="padding:20px 28px 28px;">
+          <div class="tl-list" style="margin-top:0; max-width:100%;">
+            <p style="font-size:13.5px; color:var(--ink-faint); margin:0 0 16px;" data-en="An online job simulation program on The Forage platform, hosted by BCG (Boston Consulting Group).">Chương trình mô phỏng việc làm trực tuyến trên nền tảng The Forage do BCG (Boston Consulting Group) tổ chức.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Objective">Mục tiêu</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="Practiced the research process and proposed digital transformation solutions for CoffeeCo, an F&amp;B business: conducting market research, analyzing customer data for insights, proposing digital transformation ideas, and managing project timelines using Agile on Trello.">Thực hành quy trình nghiên cứu và đề xuất giải pháp chuyển đổi số cho CoffeeCo — một doanh nghiệp ngành F&B: nghiên cứu thị trường, phân tích dữ liệu khách hàng để rút ra insight, đề xuất ý tưởng chuyển đổi số và quản lý tiến độ dự án theo Agile trên Trello.</p>
+
+            <p style="margin:0 0 4px;"><b style="color:var(--ink);" data-en="Tools">Công cụ</b></p>
+            <p style="font-size:14px; color:var(--ink-soft); margin:0 0 18px;" data-en="Idea generation &amp; filtering — MindMeister; Data analysis &amp; processing — Excel; Presentation &amp; visualization — Canva, PowerPoint; Multi-angle brainstorming support — AI.">Xây dựng & chọn lọc ý tưởng — MindMeister; Phân tích, xử lý dữ liệu — Excel; Trình bày & trực quan hóa — Canva, PowerPoint; Hỗ trợ gợi ý đa chiều — AI.</p>
+
+            <p style="margin:0 0 6px;"><b style="color:var(--ink);" data-en="Results">Kết quả</b></p>
+            <ul style="margin:0 0 18px; padding-left:18px;">
+              <li data-en="Completed the full case study (6 tasks) as required by BCG.">Hoàn thành bộ case study (6 tasks) theo yêu cầu của BCG.</li>
+              <li data-en="Proposed a digital transformation solution for the client.">Đề xuất được giải pháp chuyển đổi số cho khách hàng.</li>
+            </ul>
+
+            <p style="margin:0 0 8px;"><b style="color:var(--ink);" data-en="Skills Gained">Kỹ năng đạt được</b></p>
+            <div class="tl-skills" style="margin-top:0; margin-bottom:20px;">
+              <span class="tl-skill-chip" data-en="Brainstorming &amp; Idea Screening">Brainstorming & sàng lọc ý tưởng</span>
+              <span class="tl-skill-chip" data-en="Data Analysis &amp; Visualization (Excel)">Phân tích & trực quan hóa dữ liệu (Excel)</span>
+              <span class="tl-skill-chip" data-en="Office Software">Tin học văn phòng</span>
+              <span class="tl-skill-chip" data-en="Independent Work">Làm việc độc lập</span>
+              <span class="tl-skill-chip" data-en="Problem Solving">Giải quyết vấn đề</span>
+              <span class="tl-skill-chip" data-en="Timeline Management (Agile/Trello)">Quản lý tiến độ (Agile/Trello)</span>
+            </div>
+          </div>
+          <!-- Khi đã upload file PDF slide lên cùng thư mục với index.html, đổi href bên dưới thành đúng tên file, ví dụ: href="bcg-slide.pdf" -->
+          <a class="btn btn-primary" href="bcg-slide.pdf" target="_blank" rel="noopener" data-en="View Project Slides (PDF) ↗">Xem slide dự án (PDF) ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-en="Education">Học vấn</span>
+      <h2 data-en="Academic Background">Nền tảng học thuật</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <span class="tag mono" data-en="2022 — EXPECTED 2026">2022 — DỰ KIẾN 2026</span>
+        <h3 data-en="Banking University of Ho Chi Minh City">Đại học Ngân hàng TP.HCM</h3>
+        <div class="sub" data-en="International Economics · Major in Digital Economy &amp; Business">Kinh tế Quốc tế · Chuyên ngành Kinh tế & Kinh doanh số</div>
+        <p data-en="Expected graduation in 2026.">Dự kiến tốt nghiệp năm 2026.</p>
+        <p style="margin-top:8px;" data-en='GPA: <b style="color:var(--ink);">3.2/4</b> (equivalent to <b style="color:var(--ink);">8.2/10</b>)'>GPA: <b style="color:var(--ink);">3.2/4</b> (tương đương <b style="color:var(--ink);">8.2/10</b>)</p>
+      </div>
+      <div class="edu-card">
+        <span class="tag mono" data-en="SINCE 04/2026">TỪ 04/2026</span>
+        <h3>Khóa học Data Analytics</h3>
+        <div class="sub" data-en="Online course · SQL &amp; Power BI">Học online · SQL & Power BI</div>
+        <p data-en="Completed coursework on SQL and Power BI, applied through a hands-on e-commerce dashboard project.">Hoàn thành các nội dung về SQL, Power BI và áp dụng vào project dashboard e-commerce thực tế.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-band">
+    <h2 data-en="Let's Talk">Cùng trao đổi công việc nhé</h2>
+    <p data-en="I'm always open to internship/job opportunities related to data and quality control.">Em luôn sẵn sàng lắng nghe cơ hội thực tập/công việc liên quan đến dữ liệu và kiểm soát chất lượng.</p>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:anhlinhnt03@gmail.com">
+        <span class="ico">✉</span>
+        <span><span class="lbl">Email</span><br><span class="val">anhlinhnt03@gmail.com</span></span>
+      </a>
+      <a class="contact-item" href="tel:0337688768">
+        <span class="ico">☎</span>
+        <span><span class="lbl" data-en="Phone">Điện thoại</span><br><span class="val">0337 688 768</span></span>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/anhlinhnguyenthi" target="_blank" rel="noopener">
+        <span class="ico">in</span>
+        <span><span class="lbl">LinkedIn</span><br><span class="val">anhlinhnguyenthi</span></span>
+      </a>
+      <a class="contact-item" href="#" onclick="return false;">
+        <span class="ico">📍</span>
+        <span><span class="lbl" data-en="Location">Khu vực</span><br><span class="val" data-en="Thu Duc, Ho Chi Minh City">Thủ Đức, TP.HCM</span></span>
+      </a>
+      <a class="contact-item" href="https://zalo.me/0829518019" target="_blank" rel="noopener">
+        <span class="ico">Za</span>
+        <span><span class="lbl">Zalo</span><br><span class="val">0829 518 019</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-en="© 2026 Nguyen Thi Anh Linh · This portfolio was built to accompany my CV.">© 2026 Nguyễn Thị Ánh Linh · Portfolio này được xây dựng để đồng hành cùng CV.</span>
+  <div style="margin-top:10px;">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=anhlinhnt03-hub.my-portfolio" alt="Lượt xem portfolio" style="opacity:0.85;">
+  </div>
+</footer>
+
+<script>
+  function setLanguage(lang){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(!('vi' in el.dataset)) el.dataset.vi = el.innerHTML;
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.vi;
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    document.documentElement.lang = lang;
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.addEventListener('click', function(){ setLanguage(b.dataset.lang); });
+  });
+</script>
+
+</body>
+</html>    html{scroll-behavior:auto;}
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
   }
   body{
